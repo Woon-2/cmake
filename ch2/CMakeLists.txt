@@ -105,6 +105,7 @@ endif()
 
 find_package(Git)
 if(GIT_FOUND)
+    # Build와 Push를 합칠 수 있겠는데?
     add_custom_target(log
         COMMENT "**** git commit log ****"
         COMMAND ${GIT_EXECUTABLE} --version
@@ -116,3 +117,16 @@ if(GIT_FOUND)
     )
     add_dependencies(log_detailed log)
 endif()
+
+#install
+
+install(FILES   LICENSE
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}
+)
+
+install(TARGETS main
+        RUNTIME  DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+        LIBRARY  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+        ARCHIVE  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+        INCLUDES DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+)

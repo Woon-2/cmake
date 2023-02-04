@@ -106,13 +106,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\00ee8a9a4ac782816e4b6304d1ecf91d\log.rule">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">git commit log</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">**** git commit log ****</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 "C:\Program Files\Git\cmd\git.exe" --version
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
-if %errorlevel% neq 0 goto :cmEnd
-message ( wow )
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
 if %errorlevel% neq 0 goto :cmEnd
@@ -126,13 +124,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">git commit log</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">**** git commit log ****</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 "C:\Program Files\Git\cmd\git.exe" --version
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
-if %errorlevel% neq 0 goto :cmEnd
-message ( wow )
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
 if %errorlevel% neq 0 goto :cmEnd
@@ -146,13 +142,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</VerifyInputsAndOutputsExist>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">git commit log</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">**** git commit log ****</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
 "C:\Program Files\Git\cmd\git.exe" --version
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
-if %errorlevel% neq 0 goto :cmEnd
-message ( wow )
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
 if %errorlevel% neq 0 goto :cmEnd
@@ -166,13 +160,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</VerifyInputsAndOutputsExist>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">git commit log</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">**** git commit log ****</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
 "C:\Program Files\Git\cmd\git.exe" --version
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
-if %errorlevel% neq 0 goto :cmEnd
-message ( wow )
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
 if %errorlevel% neq 0 goto :cmEnd
