@@ -3,9 +3,6 @@
   <PropertyGroup>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
-  <PropertyGroup>
-    <ResolveNugetPackages>false</ResolveNugetPackages>
-  </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -25,11 +22,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CFBD929D-F921-30C1-8587-ECF72EA43A5E}</ProjectGuid>
+    <ProjectGuid>{17CB9D92-8C81-3533-9FC3-6E92BF4A5D54}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
-    <ProjectName>ALL_BUILD</ProjectName>
+    <ProjectName>log</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -108,6 +105,90 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CustomBuild Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\00ee8a9a4ac782816e4b6304d1ecf91d\log.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">git commit log</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\Git\cmd\git.exe" --version
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
+if %errorlevel% neq 0 goto :cmEnd
+message ( wow )
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">git commit log</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\Git\cmd\git.exe" --version
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
+if %errorlevel% neq 0 goto :cmEnd
+message ( wow )
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</VerifyInputsAndOutputsExist>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">git commit log</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\Git\cmd\git.exe" --version
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
+if %errorlevel% neq 0 goto :cmEnd
+message ( wow )
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</VerifyInputsAndOutputsExist>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">git commit log</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\Git\cmd\git.exe" --version
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --pretty=oneline
+if %errorlevel% neq 0 goto :cmEnd
+message ( wow )
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Git\cmd\git.exe" log --abbrev-commit --stat -1
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</VerifyInputsAndOutputsExist>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
     <CustomBuild Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/USER/Desktop/휴학생의 흔적/cmake/ch2/CMakeLists.txt</Message>
@@ -165,6 +246,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\log">
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\ZERO_CHECK.vcxproj">
@@ -172,14 +255,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
-    <ProjectReference Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\A.vcxproj">
-      <Project>{9A5C19AC-B933-3FAB-88E0-51FE81AFED6D}</Project>
-      <Name>A</Name>
-    </ProjectReference>
-    <ProjectReference Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\main.vcxproj">
-      <Project>{D29DE192-D208-334B-A015-467184E201B1}</Project>
-      <Name>main</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

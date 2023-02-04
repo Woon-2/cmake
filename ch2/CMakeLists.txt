@@ -105,10 +105,14 @@ endif()
 
 find_package(Git)
 if(GIT_FOUND)
-    add_custom_target(GitDescription
-        COMMENT "git description *******************"
+    add_custom_target(log
+        COMMENT "**** git commit log ****"
         COMMAND ${GIT_EXECUTABLE} --version
-        COMMAND ${GIT_EXECUTABLE} log --abbrev-commit --stat -p -3
-        COMMENT "***********************************"
+        COMMAND ${GIT_EXECUTABLE} log --abbrev-commit --pretty=oneline
+        COMMAND ${GIT_EXECUTABLE} log --abbrev-commit --stat -1
     )
+    add_custom_target(log_detailed
+        COMMAND ${GIT_EXECUTABLE} log --abbrev-commit -p -1
+    )
+    add_dependencies(log_detailed log)
 endif()
