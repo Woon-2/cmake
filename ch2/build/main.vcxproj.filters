@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{DFE9A70D-5798-34C5-81BD-D43C20F2953A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

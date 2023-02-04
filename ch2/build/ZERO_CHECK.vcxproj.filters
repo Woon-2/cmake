@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch2\build\CMakeFiles\00ee8a9a4ac782816e4b6304d1ecf91d\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2D35370D-8740-3DED-98BD-DC0AC30A71E2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
