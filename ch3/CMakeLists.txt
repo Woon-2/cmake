@@ -50,7 +50,12 @@ endif()
 # [compilation] //////////////////////////////////////
 
 # make targets
-add_executable(test_suite test_suite.cpp)
+
+file(GLOB srcs test*.cpp)
+
+message(STATUS "Using sources: ${srcs}")
+
+add_executable(test_suite ${srcs})
 
 set_target_properties(test_suite
 PROPERTIES
