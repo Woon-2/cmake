@@ -1,4 +1,13 @@
 cmake_minimum_required(VERSION 3.18)
+
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "Setting build type to 'RelWithDebInfo' as none was specified.")
+  set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Choose the type of build." FORCE)
+  # Set the possible values of build type for cmake-gui
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
+    "MinSizeRel" "RelWithDebInfo")
+endif()
+
 project(hello_world VERSION 2023.02.05 LANGUAGES CXX)
 
 message(STATUS "Using Generator: ${CMAKE_GENERATOR}")
@@ -17,11 +26,14 @@ endif()
 
 add_library(CXX_INTERFACE INTERFACE)
 
-
+# Default compile options for each compiler
 if(CMAKE_CXX_COMPILER_ID MATCHES GNU) # https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html
     target_compile_options(CXX_INTERFACE
     INTERFACE
         -fconcepts
+        -Wall
+        -pedantic
+        -Wextra
     )
 
 elseif(CMAKE_CXX_COMPILER_ID MATCHES Clang) # https://clang.llvm.org/docs/ClangCommandLineReference.html
@@ -43,6 +55,8 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES MSVC) # https://docs.microsoft.com/en-us/cp
     INTERFACE
         /JMC-
         /Zc:preprocessor
+        /Zc:__cplusplus
+        /Wall
     )
 
 endif()
@@ -64,6 +78,7 @@ PROPERTIES
 )
 
 # configure by platforms -----------------------
+
 if(WIN32)
     set_target_properties(CXX_INTERFACE
     PROPERTIES
