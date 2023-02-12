@@ -1,3 +1,10 @@
+# ================================================
+# This script behaves as follows
+# 1. Check build type (If build type is not specified, it sets
+#    the build type to 'RelWithDebInfo' as default.)
+# 2. Cmake project setup
+# ================================================
+
 cmake_minimum_required(VERSION 3.18)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
