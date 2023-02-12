@@ -1,3 +1,17 @@
+# ************************************************
+# This cmake script describes how to build the project.
+# Building process in here is the top level of the build tree,
+# so this script participates in the entire building process.
+#
+# /// [For Users] ///
+#   type following commands on CLI to make your sources
+#   into an executable, or a library.
+#   1. cd [] (type the directory this file is located in [].)
+#   2. cmake -S. -Bbuild
+#   3. cmake --build build
+# /////////////////// 
+#
+# ************************************************
 # ================================================
 # This script behaves as follows
 # 0. Check cmake version
@@ -5,7 +19,9 @@
 #    the build type to 'RelWithDebInfo' as default.)
 # 2. Cmake project setup
 # 3. C++ setup (Prepare default compile options for each compiler.) 
-# 4. Platform setup (Shared settings for targets on each platform.)
+# 4. Platform setup (Shared settings for targets on each platform)
+# 5. Module test (Just experiments for studying)
+# 6. Git log command (A custom target to provide git log during building)
 # ------------------------------------------------
 # Procedures
 # *** 0-4 Project steps
@@ -13,19 +29,27 @@
 #     which includes at least one of header or source.
 #     Default language & compile & link settings
 #     which is used by all of targets or even other project.
-# *** Common steps
+# *** 5-5 Common steps
 #     Operations which has to be executed on every single build.
-# *** Custom steps
+# *** 6-6 Custom steps
 #     Optional operations executed when given additional cmake
 #     command: via custom target, custom command, etc.
+# ------------------------------------------------
 # ================================================
 
-# *** Project steps ***
+#################
+# Project steps #
+#################
 
-### 0. Check cmake version
+# *** 0. Check cmake version ***
+
 cmake_minimum_required(VERSION 3.18)
 
-### 1. Check build type
+
+# *** 1. Check build type ***
+# If build type is not specified, it sets the build type
+# to 'RelWithDebInfo' as default.
+
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message(STATUS "Setting build type to 'RelWithDebInfo'(default build type)
         as none was speicifed.")
@@ -36,10 +60,15 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     "MinSizeRel" "RelWithDebInfo")
 endif()
 
-### 2. Cmake project setup
+
+# *** 2. Cmake project setup ***
+
 project(hello_world VERSION 2023.02.12 LANGUAGES CXX)
 
-### 3. C++ setup
+
+# *** 3. C++ setup ***
+# Prepare default compile options for each compiler.
+
 add_library(CXX_DEFAULT_INTERFACE INTERFACE)
 
 # See below link for finding gcc options.
@@ -52,6 +81,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
     -pedantic
     -Wextra
     )
+
 # See below link for finding clang options.
 # https://clang.llvm.org/docs/ClangCommandLineReference.html
 elseif(CMAKE_CXX_COMPILER_ID MATCHES CLANG)
@@ -68,6 +98,7 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES CLANG)
             -std=c++2a
         )
     endif()
+
 # See below link for finding msvc options.
 # https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-by-category?view=msvc-160
 elseif(CMAKE_CXX_COMPILER_ID MATCHES MSVC)
@@ -81,7 +112,9 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES MSVC)
     )
 endif()
 
-### 4. Platform setup
+
+# *** 4. Platform setup ***
+# Shared settings for targets on each platform
 
 # WIN32
 add_library(WIN32_DEFAULT_INTERFACE INTERFACE)
@@ -96,9 +129,29 @@ PROPERTIES
     WINDOWS_EXPORT_ALL_SYMBOLS OFF
 )
 
-# *** Common steps ***
+# Other platforms' setup is to be updated.
 
-# *** Custom steps ***
+
+################
+# Common steps #
+################
+
+# *** 5. Testing modules ***
+# Just experiments for studying
+
+include(CheckCXXSymbolExists)
+
+check_symbol_exists(SEEK_SET "cstdio" have_seek_set)
+
+find_package(OpenGL)
+
+
+################
+# Custom steps #
+################
+
+# *** 6. Git log command ***
+# A custom target to provide git log during building
 
 find_package(Git)
 if(GIT_FOUND)
