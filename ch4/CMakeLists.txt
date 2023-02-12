@@ -145,6 +145,8 @@ check_symbol_exists(SEEK_SET "cstdio" have_seek_set)
 
 find_package(OpenGL)
 
+message(STATUS "OpenGL Found: ${OPENGL_FOUND}")
+message(STATUS "OpenGL Library Path: ${OPENGL_LIBRARIES}")
 
 ################
 # Custom steps #
