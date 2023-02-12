@@ -22,10 +22,10 @@
 
 # *** Project steps ***
 
-### Check cmake version
+### 0. Check cmake version
 cmake_minimum_required(VERSION 3.18)
 
-### Check build type
+### 1. Check build type
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message(STATUS "Setting build type to 'RelWithDebInfo'(default build type)
         as none was speicifed.")
@@ -36,15 +36,15 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     "MinSizeRel" "RelWithDebInfo")
 endif()
 
-### Cmake project setup
+### 2. Cmake project setup
 project(hello_world VERSION 2023.02.12 LANGUAGES CXX)
 
-### C++ setup
+### 3. C++ setup
 add_library(CXX_DEFAULT_INTERFACE INTERFACE)
 
 # See below link for finding gcc options.
 # https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html
-if(CMAKE_CXX_COMPILER_ID matches GNU)
+if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
     target_compile_options(CXX_DEFAULT_INTERFACE
     INTERFACE
     -fconcepts
@@ -54,7 +54,7 @@ if(CMAKE_CXX_COMPILER_ID matches GNU)
     )
 # See below link for finding clang options.
 # https://clang.llvm.org/docs/ClangCommandLineReference.html
-elseif(CMAKE_CXX_COMPILER_ID matches CLANG)
+elseif(CMAKE_CXX_COMPILER_ID MATCHES CLANG)
     # clang options differ by platform.
     if(WIN32)  # clang-cl
         target_compile_options(CXX_DEFAULT_INTERFACE
@@ -70,7 +70,7 @@ elseif(CMAKE_CXX_COMPILER_ID matches CLANG)
     endif()
 # See below link for finding msvc options.
 # https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-by-category?view=msvc-160
-elseif(CMAKE_CXX_COMPILER_ID matches MSVC)
+elseif(CMAKE_CXX_COMPILER_ID MATCHES MSVC)
     target_compile_options(CXX_DEFAULT_INTERFACE
     INTERFACE
         /Wall
@@ -81,7 +81,7 @@ elseif(CMAKE_CXX_COMPILER_ID matches MSVC)
     )
 endif()
 
-### Platform setup
+### 4. Platform setup
 
 # WIN32
 add_library(WIN32_DEFAULT_INTERFACE INTERFACE)
