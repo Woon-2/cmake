@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.18)
 
-if(NOT CMAKE_BUILD_TYPE and NOT CMAKE_CONFIGURATION_TYPES)
-    message(STATUS "Setting build type to 'RelWithDebInfo'(default build type) as none was speicifed.")
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    message(STATUS "Setting build type to 'RelWithDebInfo'(default build type)
+        as none was speicifed.")
+    set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING
+        "Choose the type of field" FORCE)
+    # Set the possible values of build type for cmake-gui
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
+    "MinSizeRel" "RelWithDebInfo")
 endif()
 
 project(hello_world VERSION 2023.02.12 LANGUAGES CXX)
