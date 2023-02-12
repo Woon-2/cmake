@@ -10,6 +10,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZERO_CHECK", "ZERO_CHECK.vc
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "log", "log.vcxproj", "{46FDF7FC-0055-30EE-8B53-536CEBB14F84}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1FE60ABD-DAB2-38C6-9234-12D6D1D30655} = {1FE60ABD-DAB2-38C6-9234-12D6D1D30655}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -30,6 +35,10 @@ Global
 		{1FE60ABD-DAB2-38C6-9234-12D6D1D30655}.MinSizeRel|x64.Build.0 = MinSizeRel|x64
 		{1FE60ABD-DAB2-38C6-9234-12D6D1D30655}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 		{1FE60ABD-DAB2-38C6-9234-12D6D1D30655}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
+		{46FDF7FC-0055-30EE-8B53-536CEBB14F84}.Debug|x64.ActiveCfg = Debug|x64
+		{46FDF7FC-0055-30EE-8B53-536CEBB14F84}.Release|x64.ActiveCfg = Release|x64
+		{46FDF7FC-0055-30EE-8B53-536CEBB14F84}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
+		{46FDF7FC-0055-30EE-8B53-536CEBB14F84}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3767924-08E3-39B4-9CFD-23638DAF6054}

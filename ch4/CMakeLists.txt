@@ -99,3 +99,11 @@ PROPERTIES
 # *** Common steps ***
 
 # *** Custom steps ***
+
+find_package(Git)
+if(GIT_FOUND)
+    add_custom_target(log
+        COMMENT "Git Commit Log:"
+        COMMAND ${GIT_EXECUTABLE} log --pretty=reference -6
+    )
+endif()
