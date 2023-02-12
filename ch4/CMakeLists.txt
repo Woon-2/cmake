@@ -11,7 +11,7 @@
 # *** 0-4 Project steps
 #     Setup operations before creating any concrete target
 #     which includes at least one of header or source,
-#     Default language & compile & link settings
+#     default language & compile & link settings
 #     which is used by all of targets or even other project.
 # *** Common steps
 #     Operations which has to be executed on every single build.
