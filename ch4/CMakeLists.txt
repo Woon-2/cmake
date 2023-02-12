@@ -4,10 +4,11 @@
 # 1. Check build type (If build type is not specified, it sets
 #    the build type to 'RelWithDebInfo' as default.)
 # 2. Cmake project setup
-# 3. C++ setup (prepare default compile options for each compiler.) 
+# 3. C++ setup (Prepare default compile options for each compiler.) 
+# 4. Platform setup (Shared settings for targets on each platform.)
 # ------------------------------------------------
 # Procedures
-# *** 0-3 Project steps
+# *** 0-4 Project steps
 #     Setup operations before creating any concrete target
 #     which includes at least one of header or source,
 #     Default language & compile & link settings
@@ -79,6 +80,21 @@ elseif(CMAKE_CXX_COMPILER_ID matches MSVC)
         /Zc:preprocessor
     )
 endif()
+
+### Platform setup
+
+# WIN32
+add_library(WIN32_DEFAULT_INTERFACE INTERFACE)
+
+target_compile_definitions(WIN32_DEFAULT_INTERFACE
+INTERFACE
+    WIN32_LEAN_AND_MIN NOMINMAX
+)
+
+set_target_properties(WIN32_DEFAULT_INTERFACE
+PROPERTIES
+    WINDOWS_EXPORT_ALL_SYMBOLS OFF
+)
 
 # *** Common steps ***
 
