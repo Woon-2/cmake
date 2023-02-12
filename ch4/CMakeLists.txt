@@ -145,6 +145,8 @@ check_symbol_exists(SEEK_SET "cstdio" have_seek_set)
 
 find_package(OpenGL)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build)
+
 message(STATUS "OpenGL Found: ${OPENGL_FOUND}")
 message(STATUS "OpenGL Library Path: ${OPENGL_LIBRARIES}")
 
