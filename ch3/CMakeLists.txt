@@ -57,6 +57,7 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES MSVC) # https://docs.microsoft.com/en-us/cp
         /Zc:preprocessor
         /Zc:__cplusplus
         /Wall
+        /wd4668
     )
 
 endif()
