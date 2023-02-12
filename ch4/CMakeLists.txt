@@ -164,3 +164,6 @@ if(GIT_FOUND)
         COMMAND ${GIT_EXECUTABLE} log --pretty=reference -6
     )
 endif()
+
+
+# TODO: 간단한 소스 파일 만들어서 executable 가능하도록 만들고, PkgConfig 모듈 이용해서 라이브러리 찾고 링크해보기
