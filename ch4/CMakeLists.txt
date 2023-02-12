@@ -150,6 +150,13 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build)
 message(STATUS "OpenGL Found: ${OPENGL_FOUND}")
 message(STATUS "OpenGL Library Path: ${OPENGL_LIBRARIES}")
 
+function(fn VAR_NAME)
+    set(${VAR_NAME} "hello?" PARENT_SCOPE)
+endfunction()
+
+fn(hell)
+message(STATUS "${hell}")
+
 ################
 # Custom steps #
 ################
