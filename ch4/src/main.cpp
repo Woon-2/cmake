@@ -45,7 +45,7 @@ class BehaviorTree::INode_
 {
 public:
     virtual Result run() = 0;
-    virtual ~INode_() = 0;
+    virtual ~INode_() = 0 {}
 };
 
 class BehaviorTree::Composite_

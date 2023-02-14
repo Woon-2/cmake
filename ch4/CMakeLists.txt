@@ -107,6 +107,9 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES MSVC)
     INTERFACE
         /Wall
         /wd4668
+        /wd4464
+        /wd4514
+        /wd5045
         /JMC-
         /Zc:__cplusplus
         /Zc:preprocessor
