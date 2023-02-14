@@ -160,6 +160,7 @@ message(STATUS "${hell}")
 
 # *** 6. Make executable target ***
 add_library(Wrapper INTERFACE)
+target_sources(Wrapper INTERFACE inc/wrapper.h)
 
 target_link_libraries(Wrapper
 INTERFACE
