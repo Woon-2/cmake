@@ -21,7 +21,8 @@
 # 3. C++ setup (Prepare default compile options for each compiler.) 
 # 4. Platform setup (Shared settings for targets on each platform)
 # 5. Module test (Just experiments for studying)
-# 6. Git log command (A custom target to provide git log during building)
+# 6. Make executable target
+# 7. Git log command (A custom target to provide git log during building)
 # ------------------------------------------------
 # Procedures
 # *** 0-4 Project steps
@@ -29,9 +30,9 @@
 #     which includes at least one of header or source.
 #     Default language & compile & link settings
 #     which is used by all of targets or even other project.
-# *** 5-5 Common steps
+# *** 5-6 Common steps
 #     Operations which has to be executed on every single build.
-# *** 6-6 Custom steps
+# *** 7-7 Custom steps
 #     Optional operations executed when given additional cmake
 #     command: via custom target, custom command, etc.
 # ------------------------------------------------
@@ -157,11 +158,20 @@ endfunction()
 fn(hell)
 message(STATUS "${hell}")
 
+# *** 6. Make executable target ***
+add_library(Wrapper INTERFACE)
+
+target_link_libraries(Wrapper
+INTERFACE
+    CXX_DEFAULT_INTERFACE
+    WIN32_DEFAULT_INTERFACE
+)
+
 ################
 # Custom steps #
 ################
 
-# *** 6. Git log command ***
+# *** 7. Git log command ***
 # A custom target to provide git log during building
 
 find_package(Git)
