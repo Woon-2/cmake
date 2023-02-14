@@ -2,7 +2,7 @@
 #include <vector>
 #include <memory>
 
-#include "onehot.h"
+#include "../inc/onehot.h"
 
 template <class Enum, class Integer = int>
 constexpr decltype(auto) etoi(Enum e)
@@ -45,6 +45,7 @@ class BehaviorTree::INode_
 {
 public:
     virtual Result run() = 0;
+    virtual ~INode_() = 0;
 };
 
 class BehaviorTree::Composite_

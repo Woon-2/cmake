@@ -182,6 +182,21 @@ INTERFACE
     WIN32_DEFAULT_INTERFACE
 )
 
+# Make executable
+add_executable(Main)
+target_sources(Main PRIVATE src/main.cpp)
+
+set_target_properties(Main
+PROPERTIES
+    DEBUG_POSTFIX -d
+    CXX_STANDARD 20
+)
+
+target_link_libraries(Main
+PRIVATE
+    Wrapper Onehot
+)
+
 ################
 # Custom steps #
 ################
