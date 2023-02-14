@@ -159,10 +159,24 @@ fn(hell)
 message(STATUS "${hell}")
 
 # *** 6. Make executable target ***
+
+# Prepare dependencies first
+
+# - Make Wrapper library
 add_library(Wrapper INTERFACE)
 target_sources(Wrapper INTERFACE inc/wrapper.h)
 
 target_link_libraries(Wrapper
+INTERFACE
+    CXX_DEFAULT_INTERFACE
+    WIN32_DEFAULT_INTERFACE
+)
+
+# - Make Onehot library
+add_library(Onehot INTERFACE)
+target_sources(Onehot INTERFACE inc/onehot.h)
+
+target_link_libraries(Onehot
 INTERFACE
     CXX_DEFAULT_INTERFACE
     WIN32_DEFAULT_INTERFACE
