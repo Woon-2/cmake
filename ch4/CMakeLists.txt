@@ -162,27 +162,24 @@ message(STATUS "${hell}")
 
 # Prepare dependencies first
 
-# - Make Wrapper library
-add_library(Wrapper INTERFACE)
-target_sources(Wrapper INTERFACE inc/wrapper.h)
+macro(CREATE_INTERFACE_LIBRARY libName srcs)
+    add_library(${libName} INTERFACE)
+    target_sources(${libName} INTERFACE ${srcs})
 
-target_link_libraries(Wrapper
-INTERFACE
-    CXX_DEFAULT_INTERFACE
-    WIN32_DEFAULT_INTERFACE
-)
+    target_link_libraries(${libName}
+    INTERFACE
+        CXX_DEFAULT_INTERFACE
+        WIN32_DEFAULT_INTERFACE
+    )
+endmacro()
+
+# - Make Wrapper library
+CREATE_INTERFACE_LIBRARY(Wrapper "inc/wrapper.h")
 
 # - Make Onehot library
-add_library(Onehot INTERFACE)
-target_sources(Onehot INTERFACE inc/onehot.h)
+CREATE_INTERFACE_LIBRARY(Onehot "inc/onehot.h")
 
-target_link_libraries(Onehot
-INTERFACE
-    CXX_DEFAULT_INTERFACE
-    WIN32_DEFAULT_INTERFACE
-)
-
-# Make executable
+# Then make executable with dependencies
 add_executable(Main)
 target_sources(Main PRIVATE src/main.cpp)
 
