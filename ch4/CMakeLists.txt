@@ -64,7 +64,7 @@ endif()
 
 # *** 2. Cmake project setup ***
 
-project(hello_world VERSION 2023.02.12 LANGUAGES CXX)
+project(hello_world VERSION 2023.08.01 LANGUAGES CXX)
 
 
 # *** 3. C++ setup ***
@@ -211,6 +211,5 @@ if(GIT_FOUND)
         COMMAND ${GIT_EXECUTABLE} log --pretty=reference -6
     )
 endif()
-
 
 # TODO: PkgConfig 모듈 이용해서 라이브러리 찾고 링크해보기

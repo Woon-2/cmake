@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.18)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-  message(STATUS "Setting build type to 'RelWithDebInfo' as none was specified.")
-  set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Choose the type of build." FORCE)
+  message(STATUS "Setting build type to 'Debug' as none was specified.")
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build." FORCE)
   # Set the possible values of build type for cmake-gui
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release"
     "MinSizeRel" "RelWithDebInfo")
@@ -18,7 +18,7 @@ if (NOT DEFINED CMAKE_INSTALL_PREFIX)
     )
 endif()
 
-project(hello_world VERSION 2023.02.05 LANGUAGES CXX)
+project(hello_world VERSION 2023.08.01 LANGUAGES CXX)
 
 message(STATUS "Using Generator: ${CMAKE_GENERATOR}")
 
@@ -130,6 +130,9 @@ install(TARGETS test_suite
 )
 
 # [test] ////////////////////////////////////
+
+# Catch2
+find_package(Catch2 REQUIRED)
 
 option(BUILD_TESTING "Build test programs" ON)
 

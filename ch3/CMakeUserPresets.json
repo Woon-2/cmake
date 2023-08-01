@@ -1,0 +1,9 @@
+{
+    "version": 4,
+    "vendor": {
+        "conan": {}
+    },
+    "include": [
+        "C:\\Users\\USER\\Desktop\\footprint of soilder\\cmake\\ch3\\build\\CMakePresets.json"
+    ]
+}
