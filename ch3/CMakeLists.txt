@@ -8,6 +8,16 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     "MinSizeRel" "RelWithDebInfo")
 endif()
 
+if (NOT DEFINED CMAKE_INSTALL_PREFIX)
+    message(STATUS "setting CMAKE_INSTALL_PREFIX to
+        ${CMAKE_CURRENT_SOURCE_DIR}/install(default install prefix)
+        as none was specified."
+    )
+    set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install" CACHE FILEPATH
+        "Set path to install."
+    )
+endif()
+
 project(hello_world VERSION 2023.02.05 LANGUAGES CXX)
 
 message(STATUS "Using Generator: ${CMAKE_GENERATOR}")

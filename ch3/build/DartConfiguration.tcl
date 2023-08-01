@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: C:/Users/USER/Desktop/휴학생의 흔적/cmake/ch3
-BuildDirectory: C:/Users/USER/Desktop/휴학생의 흔적/cmake/ch3/build
+SourceDirectory: C:/Users/USER/Desktop/footprint of soilder/cmake/ch3
+BuildDirectory: C:/Users/USER/Desktop/footprint of soilder/cmake/ch3/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -27,7 +27,7 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "C:/Program Files/CMake/bin/cmake.exe" "C:/Users/USER/Desktop/휴학생의 흔적/cmake/ch3"
+ConfigureCommand: "C:/Program Files/CMake/bin/cmake.exe" "C:/Users/USER/Desktop/footprint of soilder/cmake/ch3"
 MakeCommand: "C:\Program Files\CMake\bin\cmake.exe" --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 

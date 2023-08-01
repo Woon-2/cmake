@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch4\src\main.cpp">
+    <ClCompile Include="C:\Users\USER\Desktop\footprint of soilder\cmake\ch4\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch4\inc\wrapper.h">
+    <ClInclude Include="C:\Users\USER\Desktop\footprint of soilder\cmake\ch4\inc\wrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch4\inc\onehot.h">
+    <ClInclude Include="C:\Users\USER\Desktop\footprint of soilder\cmake\ch4\inc\onehot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\USER\Desktop\휴학생의 흔적\cmake\ch4\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\USER\Desktop\footprint of soilder\cmake\ch4\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{F597B4E0-AE08-3B56-A040-CB249EEBE249}</UniqueIdentifier>
+      <UniqueIdentifier>{BDE934E7-ECE9-3E85-8E88-D0856A0890AF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{DCE522C4-3D35-332E-B5DF-929C516F74F2}</UniqueIdentifier>
+      <UniqueIdentifier>{A0D54824-1B6C-373B-BBBF-78DBD26718E4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
