@@ -81,8 +81,15 @@ file(GLOB srcs test*.cpp)
 message(STATUS "Using sources: ${srcs}")
 
 add_executable(test_suite ${srcs})
+add_executable(catchtest catchtest.cpp)
 
 set_target_properties(test_suite
+PROPERTIES
+    DEBUG_POSTFIX -d
+    CXX_STANDARD 20
+)
+
+set_target_properties(catchtest
 PROPERTIES
     DEBUG_POSTFIX -d
     CXX_STANDARD 20
@@ -103,9 +110,13 @@ endif()
 
 if(WIN32)
     target_link_libraries(test_suite PRIVATE WIN32_INTERFACE)
+    target_link_libraries(catchtest PRIVATE WIN32_INTERFACE)
 endif()
 
 target_link_libraries(test_suite PRIVATE CXX_INTERFACE)
+target_link_libraries(catchtest PRIVATE WIN32_INTERFACE)
+target_link_libraries(catchtest PRIVATE Catch2::Catch2)
+target_link_libraries(catchtest PRIVATE Catch2::Catch2WithMain)
 
 # [custom target] ///////////////////////////
 
@@ -122,7 +133,7 @@ endif()
 
 # [install] /////////////////////////////////
 
-install(TARGETS test_suite
+install(TARGETS test_suite catchtest
     RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
     LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
     ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
