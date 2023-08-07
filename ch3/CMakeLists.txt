@@ -134,6 +134,14 @@ endif()
 # [install] /////////////////////////////////
 
 install(TARGETS test_suite catchtest
+    EXPORT ch3-targets
+)
+
+install(EXPORT ch3-targets
+     DESTINATION ${CMAKE_INSTALL_PREFIX}
+)
+
+install(TARGETS test_suite catchtest
     RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
     LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
     ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
