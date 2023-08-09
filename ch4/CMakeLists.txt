@@ -20,9 +20,10 @@
 # 2. Cmake project setup
 # 3. C++ setup (Prepare default compile options for each compiler.) 
 # 4. Platform setup (Shared settings for targets on each platform)
-# 5. Module test (Just experiments for studying)
-# 6. Make executable target
-# 7. Git log command (A custom target to provide git log during building)
+# 5. Experiment cmake functions (Just experiments for studying)
+# 6. Module test (Just experiments for studying)
+# 7. Make executable target
+# 8. Git log command (A custom target to provide git log during building)
 # ------------------------------------------------
 # Procedures
 # *** 0-4 Project steps
@@ -30,9 +31,9 @@
 #     which includes at least one of header or source.
 #     Default language & compile & link settings
 #     which is used by all of targets or even other project.
-# *** 5-6 Common steps
+# *** 5-7 Common steps
 #     Operations which has to be executed on every single build.
-# *** 7-7 Custom steps
+# *** 8-8 Custom steps
 #     Optional operations executed when given additional cmake
 #     command: via custom target, custom command, etc.
 # ------------------------------------------------
@@ -64,7 +65,7 @@ endif()
 
 # *** 2. Cmake project setup ***
 
-project(hello_world VERSION 2023.08.01 LANGUAGES CXX)
+project(hello_world VERSION 2023.08.09 LANGUAGES CXX)
 
 
 # *** 3. C++ setup ***
@@ -140,12 +141,29 @@ PROPERTIES
 # Common steps #
 ################
 
-# *** 5. Testing modules ***
+# *** 5. Experiment cmake functions ***
 # Just experiments for studying
 
 include(CheckCXXSymbolExists)
-
 check_symbol_exists(SEEK_SET "cstdio" have_seek_set)
+check_symbol_exists(printf "cstdio" have_printf)
+message(STATUS "have_seek_set: ${have_seek_set}")
+message(STATUS "have_printf: ${have_printf}")
+
+include(CheckCXXCompilerFlag)
+check_cxx_compiler_flag(/whatthefuck has_JMC)
+message(STATUS "has_JMC: ${has_JMC}")
+
+include(CheckIncludeFileCXX)
+# list(APPEND CMAKE_REQUIRED_FLAGS)
+# # check_include_file_cxx uses compiler.
+# # To yield what is align with the actual compilation,
+# # checking must use the same compile option with actual compilation.
+check_include_file_cxx("Windows.h" found_window)
+message(STATUS "found_window: ${found_window}")
+
+# *** 6. Testing modules ***
+# Just experiments for studying
 
 find_package(OpenGL)
 
@@ -161,7 +179,7 @@ endfunction()
 fn(hell)
 message(STATUS "${hell}")
 
-# *** 6. Make executable target ***
+# *** 7. Make executable target ***
 
 # Prepare dependencies first
 
@@ -201,7 +219,7 @@ PRIVATE
 # Custom steps #
 ################
 
-# *** 7. Git log command ***
+# *** 8. Git log command ***
 # A custom target to provide git log during building
 
 find_package(Git)
