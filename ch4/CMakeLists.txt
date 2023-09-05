@@ -65,7 +65,7 @@ endif()
 
 # *** 2. Cmake project setup ***
 
-project(hello_world VERSION 2023.08.09 LANGUAGES CXX)
+project(hello_world VERSION 2023.09.05 LANGUAGES CXX)
 
 
 # *** 3. C++ setup ***
@@ -152,7 +152,7 @@ message(STATUS "have_printf: ${have_printf}")
 
 include(CheckCXXCompilerFlag)
 check_cxx_compiler_flag(/whatthefuck has_JMC)
-message(STATUS "has_JMC: ${has_JMC}")
+message(STATUS "has_JMC: ${has_JMC}")   # must be null
 
 include(CheckIncludeFileCXX)
 # list(APPEND CMAKE_REQUIRED_FLAGS)
