@@ -61,3 +61,17 @@ if(NOT DEFINED CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_CONFIGURATION_TYPES "${DEFAULT_CONFIGURATION_TYPES}" CACHE
         STRING "Write the possible configuration types." FORCE)
 endif()
+```
+
+- `project configuration`: 프로젝트의 이름과 메타데이터 및 **타겟 플랫폼과 언어 관련 정보 설정(툴체인 기반)**
+
+> - If CMAKE_TOOLCHAIN_FILE is set, read it at least once. It may be read multiple times and it may also be read again when enabling languages later (see below).
+> - Set the variables describing the host and target platforms. Language-specific variables might or might not be set at this point. On the first run, the only language-specific variables that might be defined are those a toolchain file may have set. On subsequent runs, language-specific variables cached from a previous run may be set.
+
+```cmake
+project(<PROJECT-NAME>
+        [VERSION <major>[.<minor>[.<patch>[.<tweak>]]]]
+        [DESCRIPTION <project-description-string>]
+        [HOMEPAGE_URL <url-string>]
+        [LANGUAGES <language-name>...])
+```
