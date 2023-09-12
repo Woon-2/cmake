@@ -20,10 +20,9 @@
 # 2. Cmake project setup
 # 3. C++ setup (Prepare default compile options for each compiler.) 
 # 4. Platform setup (Shared settings for targets on each platform)
-# 5. Experiment cmake functions (Just experiments for studying)
-# 6. Module test (Just experiments for studying)
-# 7. Make executable target
-# 8. Git log command (A custom target to provide git log during building)
+# 5. Module test (Just experiments for studying)
+# 6. Make executable target
+# 7. Git log command (A custom target to provide git log during building)
 # ------------------------------------------------
 # Procedures
 # *** 0-4 Project steps
@@ -141,7 +140,7 @@ PROPERTIES
 # Common steps #
 ################
 
-# *** 5. Experiment cmake functions ***
+# *** 5. Testing modules ***
 # Just experiments for studying
 
 include(CheckCXXSymbolExists)
@@ -162,8 +161,14 @@ include(CheckIncludeFileCXX)
 check_include_file_cxx("Windows.h" found_window)
 message(STATUS "found_window: ${found_window}")
 
-# *** 6. Testing modules ***
-# Just experiments for studying
+include(CheckTypeSize)
+check_type_size(int SIZEOF_INT LANGUAGE CXX)
+message(STATUS "is symbol \"int\" exists: ${HAVE_SIZEOF_INT}")
+message(STATUS "size of int: ${SIZEOF_INT}")
+
+check_type_size(Dragon SIZEOF_DRAGON LANGUAGE CXX)
+message(STATUS "is symbol \"Dragon\" exists: ${HAVE_SIZEOF_DRAGON}")
+message(STATUS "size of Dragon: ${SIZEOF_DRAGON}")
 
 find_package(OpenGL)
 
@@ -179,7 +184,7 @@ endfunction()
 fn(hell)
 message(STATUS "${hell}")
 
-# *** 7. Make executable target ***
+# *** 6. Make executable target ***
 
 # Prepare dependencies first
 
@@ -219,7 +224,7 @@ PRIVATE
 # Custom steps #
 ################
 
-# *** 8. Git log command ***
+# *** 7. Git log command ***
 # A custom target to provide git log during building
 
 find_package(Git)

@@ -145,4 +145,6 @@ int main()
     std::cout << etoi(BehaviorTree::Result::error) << '\n';
     
     std::cout << __ONEHOT_NUMARGS(1,2,3,4,5) << '\n';
+
+    std::cin.get();
 }
