@@ -77,6 +77,33 @@ project(<PROJECT-NAME>
         [LANGUAGES <language-name>...])
 ```
 
+- `resource paths management`: 환경에 따라서 달라질 수 있는 리소스 경로들을 cmake가 제공,
+  `.in`으로 끝나는 템플릿을 cmake가 처리하여 실제 헤더파일을 생산한다.
+
+##### resource.h.in:
+
+```cpp
+#ifndef __resources
+#define __resources
+
+#define PATH_IMAGES "@IMAGE_RESOURCE_PATH@"    // identifiers within @ are replaced by cmake
+#define PATH_SOUNDS "@SOUND_RESOURCE_PATH@"    // via "configure_file" command
+
+#endif
+```
+
+##### CMake lines:
+
+```cmake
+set(IMAGE_RESOURCE_PATH "${PROJECT_SOURCE_DIR}/resource/image")
+set(SOUND_RESOURCE_PATH "${PROJECT_SOURCE_DIR}/resource/sound")
+
+configure_file(
+    "${PROJECT_SOURCE_DIR}/include/resources.h.in"
+    "${PROJECT_BINARY_DIR}/include/resources.h"
+)
+```
+
 ## Useful Modules
 
 ### TestBigEndian
@@ -97,8 +124,8 @@ check_cxx_symbol_exists(std::int32_t cstdint RES)
 message(STATUS "Is int32_t exists: ${RES})
 ```
 
-- `CMAKE_REQUIRED_...` 변수들을 조작해야 하는데, 커스텀으로 `try_compile`과 `try_run` 비슷한 함수를 만들면,
-  `CMAKE_REQUIRED_...`를 직접 조작하지 않을 수 있다.
+- `CMAKE_REQUIRED_...` 변수들을 조작해야 하는데, 커스텀으로 `try_compile`과 `try_run` 비슷한 함수를 만들면   
+  `CMAKE_REQUIRED_...`를 직접 조작하지 않을 수 있다.   
 - 물론, `cmake_push_state`, `cmake_reset_state`를 사용하는 방법도 있다.
 
 ### CheckTypeSize
@@ -115,6 +142,6 @@ message(size of hp, a member data of the class, Dragon: ${SIZEOF_DRAGON_HP})
 
 >Despite the name of the macro you may use it to check the size of more complex expressions, too.
 
-- `HAVE_<variable>`: 해당 타입이 존재하는지를 나타내는 boolean 타입의 변수
+- `HAVE_<variable>`: 해당 타입이 존재하는지를 나타내는 boolean 타입의 변수   
   따라서 타입 크기를 조사할 때에는 굳이 `check_cxx_symbol_exists`를 사용할 필요가 없다.   
   **`HAVE_<type>`이 아닌 `HAVE_<variable>`임에 주의**
