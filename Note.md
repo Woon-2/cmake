@@ -19,7 +19,8 @@
 - `CMAKE_CONFIGURATION_TYPES`: 다양한 빌드 모드를 지원하는 빌드 시스템을 사용하는 경우(msvc) 지정,   
   리스트 변수임을 유의하기!
 - `BUILD_SHARED_LIBS`: `add_library`에 `STATIC`/`SHARED`를 명시적으로 지정하지 않으면 이 변수의 값을 따름! 체크하기
-- `BUILD_TESTING`: BUILD_TESTING이 활성화되어있을 경우 `add_subdirectory`로 테스트 디렉터리의 cmake 스크립트가 실행되도록
+- `BUILD_TESTING`: `BUILD_TESTING`이 활성화되어있을 경우 `add_subdirectory`로 테스트 디렉터리의 cmake 스크립트가 실행되도록
+- `CMAKE_MODULE_PATH`: `.cmake` 스크립트를 찾을 경로 모음, `semicolon-seperated list`, 리스트에 스크립트들이 있는 디렉터리를 추가하기
 
 ## CMake Pattern
 
@@ -75,3 +76,45 @@ project(<PROJECT-NAME>
         [HOMEPAGE_URL <url-string>]
         [LANGUAGES <language-name>...])
 ```
+
+## Useful Modules
+
+### TestBigEndian
+
+```cmake
+test_big_endian(<result-variable>)
+
+test_big_endian(RES)
+message(STATUS "Is target system big endian: ${RES})
+```
+
+### CheckSymbolExists, CheckCXXSymbolExists
+
+```cmake
+check_cxx_symbol_exists(<symbol> <headers of semicolon-separated list> <result-variable>)
+
+check_cxx_symbol_exists(std::int32_t cstdint RES)
+message(STATUS "Is int32_t exists: ${RES})
+```
+
+- `CMAKE_REQUIRED_...` 변수들을 조작해야 하는데, 커스텀으로 `try_compile`과 `try_run` 비슷한 함수를 만들면,
+  `CMAKE_REQUIRED_...`를 직접 조작하지 않을 수 있다.
+- 물론, `cmake_push_state`, `cmake_reset_state`를 사용하는 방법도 있다.
+
+### CheckTypeSize
+
+```cmake
+check_type_size(<type> <variable> [BUILTIN_TYPES_ONLY] [LANGUAGE <language>])
+
+check_type_size(int SIZEOF_INT LANGUAGE CXX)
+check_type_size("((Dragon*)0)->hp" SIZEOF_DRAGON_HP)
+
+message(size of int: ${SIZEOF_INT})
+message(size of hp, a member data of the class, Dragon: ${SIZEOF_DRAGON_HP})
+```
+
+>Despite the name of the macro you may use it to check the size of more complex expressions, too.
+
+- `HAVE_<variable>`: 해당 타입이 존재하는지를 나타내는 boolean 타입의 변수
+  따라서 타입 크기를 조사할 때에는 굳이 `check_cxx_symbol_exists`를 사용할 필요가 없다.   
+  **`HAVE_<type>`이 아닌 `HAVE_<variable>`임에 주의**
