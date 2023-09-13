@@ -12,6 +12,11 @@
 - 변수는 무조건 대문자, 함수나 매크로는 소문자로 작성 (키워드도 결국 함수의 인자이기 때문에 대문자)
 - 경로와 같이 공백이 중간에 들어갈 가능성이 높은 문자열은 무조건 큰따옴표로 감싸기   
   ex) `set(WIN32_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Win32" CACHE STRING "Win32 Path")`
+- `PRIVATE`/`PUBLIC`/`INTERFACE`의 의미를 이해하기
+  
+  >- using a dependency in the implementation of a library, but not in the header files (PRIVATE)    
+  >- using a dependency in the implementation of a library and also in the header files (PUBLIC)    
+  >- using a dependency in the header files of a library but not in the implementation (INTERFACE)
 
 ## CMake Variables
 
@@ -34,9 +39,89 @@
   중첩된 스크립트를 처리하고 난 뒤에는 원래대로 복구된다.
 - `CMAKE_INSTALL_PREFIX`: 인스톨 경로, 인스톨 시 이 경로의 하위 디렉터리들로 빌드 파일들을 위치시키면 편리하다.
 
+## Target Construction
+
+### target_compile_features
+
+요구되는 C++ 표준 버전이 있을 때 사용
+
+```cmake
+add_library(mylib requires_cxx20.cpp)
+# C++20 is a usage-requirement
+target_compile_features(mylib PUBLIC cxx_std_20)
+```
+
+### target_compile_definitions
+
+조건부 컴파일문 등에 사용할 전처리기를 cmake단에서 정의    
+그 외에 cmake 변수를 활용하는 전처리기들은 `target_compile_definition`이 아닌 `configure_file`을 통해 작성한다.
+
+```cmake
+target_compile_definitions(<target>
+    <INTERFACE|PUBLIC|PRIVATE> [items1...]
+    [<INTERFACE|PUBLIC|PRIVATE> [items2...]...])
+
+target_compile_definitions(my_target PRIVATE $<$<CONFIG:Release>:NDEBUG>)
+```
+
+### target_compile_options
+
+각 컴파일러의 컴파일 옵션들을 참고하여 작성한다.    
+[cmake가 지원하는 컴파일러 리스트](https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_COMPILER_ID.html)
+
+- [`gcc`/`g++` 컴파일 옵션](https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html)
+- [`msvc` 컴파일 옵션](https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-by-category?view=msvc-160)
+- [`clang` 컴파일 옵션](https://clang.llvm.org/docs/ClangCommandLineReference.html)
+
+```cmake
+target_compile_options(<target> [BEFORE]
+    <INTERFACE|PUBLIC|PRIVATE> [items1...]
+    [<INTERFACE|PUBLIC|PRIVATE> [items2...]...])
+
+if(CMAKE_<LANG>_COMPILER_ID MATCHES <COMPILER_ID>)
+    target_compile_options(...)
+[elseif(CMAKE_<LANG>_COMPILER_ID MATCHES <ADDITIONAL_COMPILER_ID>...]
+endif()
+```
+
+### target_link_libraries
+
+라이브러리(`.dll`/`.lib` 등)의 절대 경로나 스크립트 내에서 식별되는 타겟 이름을 사용하여    
+외부 라이브러리를 타겟에 링크한다.
+
+```cmake
+target_link_libraries(<target>
+    <PRIVATE|PUBLIC|INTERFACE> <item>...
+    [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)
+
+
+set(LIBNAME $<IF:$<CONFIG:Debug>:woon-debug.lib,woon.lib> CACHE)
+
+target_link_libraries(
+    mylib
+    PUBLIC externlib::externlib innerlib
+    PRIVATE $<BUILD_INTERFACE:${CMAKE_PROJECT_BINARY_DIR}/lib/${LIBNAME}> $<INSTALL_INTERFACE:lib/${LIBNAME}>
+)
+```
+
+### target_link_option
+
+3.13버전에서 추가된 것임에 주의.
+각 링커의 링크 옵션을 참고하여 작성한다.
+
+```cmake
+target_link_options(<target> [BEFORE]
+    <INTERFACE|PUBLIC|PRIVATE> [items1...]
+    [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
+
+target_link_options(Win32 BEFORE PRIVATE
+    /SUBSYSTEM:WINDOWS /ENTRY:WinMainCRTStartup
+)
+```
+
 ## CMake Pattern
 
-- `ranged cmake_minimum_required`: 3.12버전에서 추가된 것으로, `backward compatible`하지만
+- `ranged cmake_minimum_required`: 3.12버전에서 추가된 것으로, `backward compatible`하지만    
   3.12버전 이전의 버전에서는 하한 버전에 고정됨, 따라서 `cmake_policy`를 이용해 적절한 버전 적용
 
 ```cmake
