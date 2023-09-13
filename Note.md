@@ -151,6 +151,20 @@ mark_as_advanced(IMAGE_RESOURCE_PATH)
 
 [`generator expression` 안에서는 문자열을 quote하지 말 것](https://gitlab.kitware.com/cmake/cmake/-/issues/19593)
 
+- `stand-alone check': stand-alone으로 빌드할 시와 다른 프로젝트의 하위 프로젝트로 빌드할 시의 설정을 분리
+
+```cmake
+# cmake 버전 3.21 이상에서
+if(PROJECT_IS_TOP_LEVEL)
+    do_something(...)
+endif()
+
+# cmake 버전 3.21 미만에서
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    do_something(...)
+endif()
+```
+
 ## Useful Modules
 
 ### TestBigEndian
