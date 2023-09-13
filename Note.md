@@ -47,7 +47,7 @@ if(${CMAKE_VERSION} VERSION_LESS 3.12)
 endif()
 ```
 
-- `configuration check`: `cmake --build`시 사용할 `configuration`의 기본값 지정
+- `default configuration`: `cmake --build`시 사용할 `configuration`의 기본값 지정
 
 ```cmake
 # Single Configuration Build System의 경우
@@ -73,6 +73,18 @@ if(NOT DEFINED CMAKE_CONFIGURATION_TYPES)
     message(STATUS "Setting configuration types to '${DEFAULT_CONFIGURATION_TYPES}' as none was specified.")
     set(CMAKE_CONFIGURATION_TYPES "${DEFAULT_CONFIGURATION_TYPES}" CACHE
         STRING "Write the possible configuration types." FORCE)
+endif()
+```
+
+- `default install prefix`: 인스톨 경로의 기본값 지정
+
+```cmake
+if(NOT DEFINED CMAKE_INSTALL_PREFIX)
+    set(DEFAULT_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}"/install)
+
+    message(STATUS "Setting install prefix to '${DEFAULT_INSTALL_PREFIX}' as none was specified.")
+    set(CMAKE_INSTALL_PREFIX "${DEFAULT_INSTALL_PREFIX}" CACHE
+        STRING "Set the install path")
 endif()
 ```
 
