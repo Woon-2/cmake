@@ -169,10 +169,8 @@ message(STATUS "Is int32_t exists: ${RES})
 check_type_size(<type> <variable> [BUILTIN_TYPES_ONLY] [LANGUAGE <language>])
 
 check_type_size(int SIZEOF_INT LANGUAGE CXX)
-check_type_size("((Dragon*)0)->hp" SIZEOF_DRAGON_HP)
 
 message(size of int: ${SIZEOF_INT})
-message(size of hp, a member data of the class, Dragon: ${SIZEOF_DRAGON_HP})
 ```
 
 >Despite the name of the macro you may use it to check the size of more complex expressions, too.
