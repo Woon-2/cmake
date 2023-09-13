@@ -26,11 +26,11 @@
 - `CMAKE_CURRENT_LIST_DIR`: 현재 처리되고 있는 cmake 스크립트가 있는 디렉터리
 - `CMAKE_CURRENT_SOURCE_DIR`: `add_subdirectory`를 할 때마다 갱신되는, 현재 소스 디렉터리
 - `CMAKE_CURRENT_BINARY_DIR`: `add_subdirectory`를 할 때마다 갱신되는, 현재 빌드 디렉터리
-- `PROJECT_SOURCE_DIR`: 가장 최근의 `project` 명령어가 실행된 소스 디렉터리
-  `add_subdirectory` 등으로 `project`가 중첩될 때마다 갱신되고,
+- `PROJECT_SOURCE_DIR`: 가장 최근의 `project` 명령어가 실행된 소스 디렉터리   
+  `add_subdirectory` 등으로 `project`가 중첩될 때마다 갱신되고,   
   중첩된 스크립트를 처리하고 난 뒤에는 원래대로 복구된다.
-- `PROJECT_BINARY_DIR`: 가장 최근의 `project` 명령어가 실행된 빌드 디렉터리
-  `add_subdirectory` 등으로 `project`가 중첩될 때마다 갱신되고,
+- `PROJECT_BINARY_DIR`: 가장 최근의 `project` 명령어가 실행된 빌드 디렉터리   
+  `add_subdirectory` 등으로 `project`가 중첩될 때마다 갱신되고,   
   중첩된 스크립트를 처리하고 난 뒤에는 원래대로 복구된다.
 - `CMAKE_INSTALL_PREFIX`: 인스톨 경로, 인스톨 시 이 경로의 하위 디렉터리들로 빌드 파일들을 위치시키면 편리하다.
 
