@@ -116,6 +116,29 @@ configure_file(
 )
 ```
 
+- `install interface & build interface`: 빌드 시와 인스톨 시에 다른 값을 가지는 변수 생성
+
+```cmake
+target_include_directories(
+    MyTarget
+    PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+```
+
+```cmake
+set(
+    IMAGE_RESOURCE_PATH
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/resource/image>
+    $<INSTALL_INTERFFACE:resource/image>
+    CACHE
+)
+mark_as_advanced(IMAGE_RESOURCE_PATH)
+```
+
+[`generator expression` 안에서는 문자열을 quote하지 말 것](https://gitlab.kitware.com/cmake/cmake/-/issues/19593)
+
 ## Useful Modules
 
 ### TestBigEndian
