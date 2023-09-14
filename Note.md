@@ -41,6 +41,41 @@
 
 ## Target Construction
 
+`target`을 선언한 뒤에는, 다음 순서로 `target`을 구축하는 것이 보기 좋다.
+
+1. `target_sources`
+2. `target_compile_features`
+3. `target_compile_definitions`
+4. `target_compile_options`
+5. `target_link_libraries`
+6. `target_link_options`
+7. `target_include_directories`
+8. `target_precompile_headers`
+
+- 모든 명령어가 `target_...s`의 형태이고 첫번째 인자로 `target`을 받는 것을 명심하자.
+- 이 명령어들은 내부적으로 `target`의 `property`들을 조작한다.    
+  직접 `target`의 `property`를 조작하는 일은 최소화하자.
+
+### target_sources
+
+`target`에 소스를 추가한다.
+
+```cmake
+target_sources(<target>
+    <INTERFACE|PUBLIC|PRIVATE> [items1...]
+    [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
+```
+
+- 소스 파일의 경로를 절대 경로로 지정하지 않을 경우 `CMAKE_CURRENT_SOURCE_DIR`에 대한 상대 경로로 인식된다.
+
+  - generator expression 안에선 이 규칙이 적용되지 않으므로, generator expression과 함께 쓰일 때에는    
+    `$<$<CONFIG:DEBUG>:${CMAKE_CURRENT_SOURCE_DIR}/source_debug.cpp`처럼 절대 경로로 작성한다.
+
+- `target_include_directories`는 필요한 헤더 파일들을 include해주지 않는다.    
+  `target_sources`에 필요한 헤더들을 명시해야한다.
+
+- 3.23버전에서 `FILE_SET`이 추가, TBA
+
 ### target_compile_features
 
 요구되는 C++ 표준 버전이 있을 때 사용
@@ -104,7 +139,7 @@ target_link_libraries(
 )
 ```
 
-### target_link_option
+### target_link_options
 
 3.13버전에서 추가된 것임에 주의.
 각 링커의 링크 옵션을 참고하여 작성한다.
@@ -118,6 +153,30 @@ target_link_options(Win32 BEFORE PRIVATE
     /SUBSYSTEM:WINDOWS /ENTRY:WinMainCRTStartup
 )
 ```
+
+### target_include_directories
+
+빌드에 필요한 헤더 파일들이 있는 디렉터리를 지정한다.    
+이 디렉터리는 `#include`문을 만날 때 찾을 경로가된다.    
+따라서 헤더들을 include할 때 소스 파일에 대해 상대 경로로 지정할 필요가 없어진다.    
+ex) `#include "../include/header.hpp"` -> `#include "header.hpp"`
+
+```cmake
+target_include_directories(<target> [SYSTEM] [AFTER|BEFORE]
+    <INTERFACE|PUBLIC|PRIVATE> [items1...]
+    [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
+
+target_include_directories(
+    mylib
+    PRIVATE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:include>
+)
+```
+
+- `SYSTEM` 인자는 외부 라이브러리의 경고를 무시하는 용도로도 쓸 수 있다.
+
+### target_precompile_headers
+
+TBA
 
 ## CMake Pattern
 
