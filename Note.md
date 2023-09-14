@@ -89,7 +89,6 @@ target_compile_features(mylib PUBLIC cxx_std_20)
 ### target_compile_definitions
 
 조건부 컴파일문 등에 사용할 전처리기를 cmake단에서 정의    
-그 외에 cmake 변수를 활용하는 전처리기들은 `target_compile_definition`이 아닌 `configure_file`을 통해 작성한다.
 
 ```cmake
 target_compile_definitions(<target>
@@ -122,7 +121,7 @@ endif()
 ### target_link_libraries
 
 라이브러리(`.dll`/`.lib` 등)의 절대 경로나 스크립트 내에서 식별되는 타겟 이름을 사용하여    
-외부 라이브러리를 타겟에 링크한다.
+외부 라이브러리를 타겟에 링크
 
 ```cmake
 target_link_libraries(<target>
@@ -156,7 +155,8 @@ target_link_options(Win32 BEFORE PRIVATE
 
 ### target_include_directories
 
-빌드에 필요한 헤더 파일들이 있는 디렉터리를 지정한다.    
+빌드에 필요한 헤더 파일들이 있는 디렉터리를 지정    
+
 이 디렉터리는 `#include`문을 만날 때 찾을 경로가된다.    
 따라서 헤더들을 include할 때 소스 파일에 대해 상대 경로로 지정할 필요가 없어진다.    
 ex) `#include "../include/header.hpp"` -> `#include "header.hpp"`
@@ -245,32 +245,33 @@ project(<PROJECT-NAME>
         [LANGUAGES <language-name>...])
 ```
 
-- `resource paths management`: 환경에 따라서 달라질 수 있는 리소스 경로들을 cmake가 제공,
-  `.in`으로 끝나는 템플릿을 cmake가 처리하여 실제 헤더파일을 생산한다.
-
-##### resource.h.in:
-
-```cpp
-#ifndef __resources
-#define __resources
-
-#define PATH_IMAGES "@IMAGE_RESOURCE_PATH@"    // identifiers within @ are replaced by cmake
-#define PATH_SOUNDS "@SOUND_RESOURCE_PATH@"    // via "configure_file" command
-
-#endif
-```
-
-##### CMake lines:
+- `adaptive code generation`: 코드에서 cmake 변수들을 사용
 
 ```cmake
-set(IMAGE_RESOURCE_PATH "${PROJECT_SOURCE_DIR}/resource/image")
-set(SOUND_RESOURCE_PATH "${PROJECT_SOURCE_DIR}/resource/sound")
+// in version.hpp.in
 
-configure_file(
-    "${PROJECT_SOURCE_DIR}/include/resources.h.in"
-    "${PROJECT_BINARY_DIR}/include/resources.h"
+#define MY_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define MY_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define MY_VERSION_PATCH @PROJECT_VERSION_PATCH@
+#define MY_VERSION_TWEAK @PROJECT_VERSION_TWEAK@
+#define MY_VERSION "@PROJECT_VERSION@"
+```
+
+```cmake
+# in CMakeLists.txt
+
+configure_file (
+    "${PROJECT_SOURCE_DIR}/include/My/Version.h.in"
+    "${PROJECT_BINARY_DIR}/include/My/Version.h"
 )
 ```
+
+@로 감싸진 문자열을 cmake의 변수로 인식하여 그 값으로 치환한다.     
+`configure_file`의 첫 번째 인자는 치환할 입력 파일, 두 번째 인자는 치환 결과가 될 출력 파일이다.
+
+`target_compile_definition` 쪽이 mutable한 변수를 줄이고 가독성이 높아지는 경향이 있으므로,      
+같은 목적으로`configure_file`과 `target_compile_definitions`을 고려할 수 있는 상황에서는      
+`target_compile_definitions`를 선호한다.
 
 - `install interface & build interface`: 빌드 시와 인스톨 시에 다른 값을 가지는 변수 생성
 
